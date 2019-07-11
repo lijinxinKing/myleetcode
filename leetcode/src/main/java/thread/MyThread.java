@@ -9,8 +9,14 @@ public class MyThread extends Thread {
 
     @Override
     public void run(){
-        for (int i = 0; i < 10; i++){
-            System.out.println("Thread start : " + this.name + "i= " + i);
+        int i = 0;
+        try {
+            while (!Thread.currentThread().isInterrupted()){
+                i++;
+                System.out.println(Thread.currentThread().getState() + ", i = " + i) ;
+            }
+        }catch (Exception ex){
+            ex.printStackTrace();
         }
     }
 }

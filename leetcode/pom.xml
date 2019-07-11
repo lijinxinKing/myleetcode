@@ -21,9 +21,12 @@
     </build>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
         <dependency>
-            <groupId></groupId>
-            <artifactId></artifactId>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>3.4.0</version>
         </dependency>
+
     </dependencies>
 </project>
