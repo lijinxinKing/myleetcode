@@ -1,28 +1,19 @@
 package seleniumtest;
-import org.junit.After;
+import base.DriverBase;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.Listeners;
+import pro.LoginPro;
 
-public class login {
-    public  WebDriver webDriver;
-    @Before
-    public  void initDriver(){
-        System.setProperty("webDriver.firefox.driver","C:\\Program Files (x86)\\Mozilla Firefox\\geckodriver.exe");
-        webDriver = new FirefoxDriver();
-        webDriver.get("https://www.lenovo.com.cn/");
+@Listeners({TestNgListenerScreenshot.class})
+public class login extends DriverBase {
+
+    public login(String browser) {
+        super(browser);
     }
-    @After
-    public void tearDown(){
-        webDriver.quit();
-    }
-    @Test
-    public void LoginScript(String userName,String password){
+
+    public void LoginScript(String userName, String password){
         try {
 
             ProUtil proUtil = new ProUtil("D:\\JavaProject\\myleetcode\\TestLjxjava\\src\\main\\resources\\element.properties");
@@ -30,6 +21,7 @@ public class login {
             String localType ="";
             String localValue ="";
 
+            driver.get("https://www.lenovo.com.cn/");
             value = proUtil.getPro("loginDialogBtn");
             localType = value.split(">")[0];
             localValue = value.split(">")[1];
@@ -58,7 +50,7 @@ public class login {
 
             webElement = element(By.className("top_login_ing"));
             if(webElement.isDisplayed()){
-                Actions actions = new Actions(webDriver);
+                Actions actions = new Actions(driver);
                 actions.moveToElement(webElement).perform();
                 System.out.println(webElement.getText());
                 System.out.println("登录成功");
@@ -87,16 +79,11 @@ public class login {
             return By.cssSelector(local);
         }
     }
-    // 封装Element
-    public WebElement element(By by){
-        WebElement element = webDriver.findElement(by);
-        return element;
-    }
+
 
     public static void main(String[] args) {
-         login login = new login();
-         login.initDriver();
-         login.LoginScript("18911777318","521125lijin");
-
+         LoginPro login = new LoginPro("firefox");
+         login.login("18911777318","521125lijin");
+         login.Stop();
     }
 }
