@@ -18,7 +18,7 @@ public class TestComputerList extends CaseBase {
     @Test
     public void ComputerList(){
         driverBase =  super.InitDriver("firefox");
-        driverBase.Get("https://www.lenovo.com.cn/");
+        driverBase.Get("https://homesecurity.coro.net/");
         WebElement webElement = driverBase.element(getByLocator.getByLocator("computerList"));
         List<WebElement> computersList =  webElement.findElements(getByLocator.getByLocator("computerChild"));
         for (WebElement element: computersList){

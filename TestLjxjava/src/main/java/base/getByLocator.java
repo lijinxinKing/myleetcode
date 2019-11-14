@@ -1,11 +1,11 @@
 package base;
 
 import org.openqa.selenium.By;
-import seleniumtest.ProUtil;
+import util.ProUtil;
 
 public class getByLocator {
     public static By getByLocator(String key){
-        ProUtil pro = new ProUtil("D:\\JavaProject\\myleetcode\\TestLjxjava\\src\\main\\resources\\element.properties");
+        ProUtil pro = new ProUtil("D:\\JavaProject\\myleetcode\\TestLjxjava\\src\\main\\resources\\LenovoCHS.properties");
         String locator = pro.getPro(key);
         String localType = locator.split(">")[0];
         String localValue = locator.split(">")[1];
